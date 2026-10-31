@@ -5,6 +5,7 @@ import archives.tater.censored.client.mixin.LevelRendererAccessor;
 import archives.tater.censored.client.render.UnseeableBlockRenderer;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
@@ -23,6 +24,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class CensoredClient implements ClientModInitializer {
+
+    public static final RenderStateDataKey<Boolean> UNSEEABLE = RenderStateDataKey.create();
 
     public static @Nullable RenderTarget prevBuffer;
 

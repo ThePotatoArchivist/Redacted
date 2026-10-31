@@ -13,6 +13,8 @@
 		"requireAnnotations": true
 	},
 	"mixins": [
-		"LevelExtractorMixin"
+		"EntityRendererMixin",
+		"LevelExtractorMixin",
+		"LivingEntityRendererMixin"
 	]
 }
