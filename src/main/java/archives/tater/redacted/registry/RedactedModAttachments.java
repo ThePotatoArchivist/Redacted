@@ -11,16 +11,19 @@ import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.Unit;
 
 public interface RedactedModAttachments {
-    AttachmentType<Unit> UNSEEABLE = AttachmentRegistry.create(
-            Redacted.id("unseeable"), builder -> builder
+    AttachmentType<Unit> UNSEEABLE = AttachmentRegistry.create(Redacted.id("unseeable"), builder -> builder
 			.persistent(Unit.CODEC)
 			.syncWith(Unit.STREAM_CODEC, AttachmentSyncPredicate.all())
 	);
 
-	AttachmentType<Integer> LAG = AttachmentRegistry.create(
-			Redacted.id("lag"), builder -> builder
-					.persistent(ExtraCodecs.POSITIVE_INT)
-					.syncWith(ByteBufCodecs.VAR_INT, AttachmentSyncPredicate.all())
+	AttachmentType<Integer> LAG = AttachmentRegistry.create(Redacted.id("lag"), builder -> builder
+			.persistent(ExtraCodecs.POSITIVE_INT)
+			.syncWith(ByteBufCodecs.VAR_INT, AttachmentSyncPredicate.all())
+	);
+
+	AttachmentType<Unit> CENSORED = AttachmentRegistry.create(Redacted.id("censored"), builder -> builder
+			.persistent(Unit.CODEC)
+			.syncWith(Unit.STREAM_CODEC, AttachmentSyncPredicate.all())
 	);
 
 	static void init() {

@@ -46,6 +46,14 @@ public final class RedactedModCommands {
                                 .then(argument("amount", integer(1))
                                         .executes(context ->
                                                 setLag(getEntities(context, "entity"), getInteger(context, "amount"))))))
+                .then(literal("censored")
+                        .then(argument("entity", entities())
+                                .executes(context ->
+                                        setCensored(getEntities(context, "entity"), true)
+                                )
+                                .then(argument("enabled", bool())
+                                        .executes(context ->
+                                                setCensored(getEntities(context, "entity"), getBool(context, "enabled"))))))
         );
     }
 
@@ -59,6 +67,13 @@ public final class RedactedModCommands {
     private static int setLag(Collection<? extends Entity> entities, @Nullable Integer amount) {
         return toIntExact(entities.stream().filter(entity ->
                 entity instanceof LivingEntity && Objects.equals(entity.setAttached(RedactedModAttachments.LAG, amount), amount)
+        ).count());
+    }
+
+    private static int setCensored(Collection<? extends Entity> entities, boolean enabled) {
+        var value = enabled ? Unit.INSTANCE : null;
+        return toIntExact(entities.stream().filter(entity ->
+                entity instanceof LivingEntity && entity.setAttached(RedactedModAttachments.CENSORED, value) != value
         ).count());
     }
 }

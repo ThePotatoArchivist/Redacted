@@ -11,11 +11,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.objectweb.asm.Opcodes;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.world.entity.Entity;
 
 @Mixin(EntityRenderer.class)
@@ -62,4 +66,20 @@ public class EntityRendererMixin<T extends Entity, S extends EntityRenderState> 
         return entity.hasAttached(RedactedModAttachments.LAG) ? 0 : partialTicks;
     }
 
+    @Inject(
+            method = "extractRenderState",
+            at = @At("TAIL")
+    )
+    private void extractCensored(T entity, S state, float partialTicks, CallbackInfo ci) {
+        state.setData(RedactedClient.CENSORED, entity.hasAttached(RedactedModAttachments.CENSORED));
+    }
+
+    @Inject(
+            method = "submit",
+            at = @At("HEAD")
+    )
+    private void addCensor(S state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera, CallbackInfo ci) {
+        if (state.getDataOrDefault(RedactedClient.CENSORED, false))
+            RedactedClient.censoredObjects.add(RedactedClient.vertices(state.x, state.y, state.z, state.boundingBoxWidth, state.boundingBoxHeight));
+    }
 }

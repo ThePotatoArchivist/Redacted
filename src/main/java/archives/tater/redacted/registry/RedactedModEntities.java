@@ -1,6 +1,6 @@
 package archives.tater.redacted.registry;
 
-import archives.tater.redacted.entity.UnseeableMob;
+import archives.tater.redacted.entity.GenericMob;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
@@ -13,8 +13,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 
 public interface RedactedModEntities {
-    EntityType<UnseeableMob> UNSEEABLE = register(
-            RedactedModEntityIds.UNSEEABLE, EntityType.Builder.of(UnseeableMob::new, MobCategory.MONSTER)
+    EntityType<GenericMob> UNSEEABLE = register(RedactedModEntityIds.UNSEEABLE, EntityType.Builder.of(GenericMob::new, MobCategory.MONSTER)
+            .sized(0.6f, 1.8f)
+            .eyeHeight(1.62f)
+            .vehicleAttachment(Avatar.DEFAULT_VEHICLE_ATTACHMENT)
+            .clientTrackingRange(8)
+            .notInPeaceful()
+    );
+
+    EntityType<GenericMob> CENSORED = register(RedactedModEntityIds.CENSORED, EntityType.Builder.of(GenericMob::new, MobCategory.MONSTER)
             .sized(0.6f, 1.8f)
             .eyeHeight(1.62f)
             .vehicleAttachment(Avatar.DEFAULT_VEHICLE_ATTACHMENT)
@@ -31,6 +38,7 @@ public interface RedactedModEntities {
 	}
 
     static void init() {
-        FabricDefaultAttributeRegistry.register(RedactedModEntities.UNSEEABLE, UnseeableMob.createAttributes());
+        FabricDefaultAttributeRegistry.register(RedactedModEntities.UNSEEABLE, GenericMob.createAttributes());
+        FabricDefaultAttributeRegistry.register(RedactedModEntities.CENSORED, GenericMob.createAttributes());
     }
 }

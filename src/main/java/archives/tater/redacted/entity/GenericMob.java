@@ -13,8 +13,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public class UnseeableMob extends Monster {
-    public UnseeableMob(EntityType<? extends Monster> type, Level level) {
+public class GenericMob extends Monster {
+    public GenericMob(EntityType<? extends Monster> type, Level level) {
         super(type, level);
     }
 
