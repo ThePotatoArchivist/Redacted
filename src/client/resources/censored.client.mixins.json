@@ -1,0 +1,18 @@
+{
+	"required": true,
+	"package": "archives.tater.censored.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"LevelRendererAccessor",
+		"LevelRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	},
+	"mixins": [
+		"LevelExtractorMixin"
+	]
+}
