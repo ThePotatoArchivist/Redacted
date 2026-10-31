@@ -9,6 +9,8 @@ import archives.tater.censored.registry.CensoredModBlocks;
 import archives.tater.censored.registry.CensoredModEntities;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
@@ -21,6 +23,7 @@ import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.special.SpecialModelRenderers;
@@ -32,6 +35,8 @@ import org.jetbrains.annotations.Nullable;
 public class CensoredClient implements ClientModInitializer {
 
     public static final RenderStateDataKey<Boolean> UNSEEABLE = RenderStateDataKey.create();
+    public static final AttachmentType<EntityRenderState> LAG_STATE = AttachmentRegistry.create(Censored.id("lag_state"));
+
     public static final Identifier MISSINGNO = Identifier.withDefaultNamespace("missingno");
 
     public static @Nullable RenderTarget prevBuffer;
