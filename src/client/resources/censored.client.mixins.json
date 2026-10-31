@@ -14,7 +14,9 @@
 	},
 	"mixins": [
 		"EntityRendererMixin",
+		"GameRendererMixin",
 		"LevelExtractorMixin",
-		"LivingEntityRendererMixin"
+		"LivingEntityRendererMixin",
+		"RenderSystemMixin"
 	]
 }

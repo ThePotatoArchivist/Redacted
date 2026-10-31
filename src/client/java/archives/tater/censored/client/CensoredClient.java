@@ -1,7 +1,6 @@
 package archives.tater.censored.client;
 
 import archives.tater.censored.Censored;
-import archives.tater.censored.client.mixin.LevelRendererAccessor;
 import archives.tater.censored.client.render.UnseeableBlockRenderer;
 import archives.tater.censored.client.render.UnseeableCubeRenderer;
 import archives.tater.censored.client.render.UnseeableMobRenderer;
@@ -12,7 +11,6 @@ import archives.tater.censored.registry.CensoredModEntities;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
-import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.pipeline.TextureTarget;
@@ -88,8 +86,5 @@ public class CensoredClient implements ClientModInitializer {
         EntityRenderers.register(CensoredModEntities.UNSEEABLE, UnseeableMobRenderer::new);
         SpecialModelRenderers.ID_MAPPER.put(Censored.id("unseeable_cube"), UnseeableCubeRenderer.Unbaked.CODEC);
 
-        LevelRenderEvents.END_MAIN.register(context -> {
-            getPrevBuffer().copyColorFrom(((LevelRendererAccessor) context.levelRenderer()).getTargets().main.get());
-        });
 	}
 }
