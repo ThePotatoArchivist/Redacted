@@ -1,5 +1,6 @@
 package archives.tater.censored.client;
 
+import archives.tater.censored.client.datagen.ModBlockLootProvider;
 import archives.tater.censored.client.datagen.ModModelProvider;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -10,5 +11,6 @@ public class CensoredDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		var pack = fabricDataGenerator.createPack();
 		pack.addProvider(ModModelProvider::new);
+		pack.addProvider(ModBlockLootProvider::new);
 	}
 }

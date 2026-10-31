@@ -3,8 +3,10 @@ package archives.tater.censored.client;
 import archives.tater.censored.Censored;
 import archives.tater.censored.client.mixin.LevelRendererAccessor;
 import archives.tater.censored.client.render.UnseeableBlockRenderer;
+import archives.tater.censored.client.render.UnseeableMobRenderer;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 
@@ -14,9 +16,14 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.renderpearl.api.GpuFormat;
 import com.mojang.renderpearl.api.pipeline.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,6 +33,7 @@ import org.jetbrains.annotations.Nullable;
 public class CensoredClient implements ClientModInitializer {
 
     public static final RenderStateDataKey<Boolean> UNSEEABLE = RenderStateDataKey.create();
+    public static final ModelLayerLocation UNSEEABLE_MOB_LAYER = new ModelLayerLocation(Censored.id("unseeable"), "main");
 
     public static @Nullable RenderTarget prevBuffer;
 
@@ -71,6 +79,8 @@ public class CensoredClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
         BlockEntityRenderers.register(Censored.UNSEEABLE_BLOCK_ENTITY, _ -> new UnseeableBlockRenderer());
+        ModelLayerRegistry.registerModelLayer(UNSEEABLE_MOB_LAYER, () -> LayerDefinition.create(HumanoidModel.createMesh(CubeDeformation.NONE, 0f), 64, 64));
+        EntityRenderers.register(Censored.UNSEEABLE_ENTITY.value(), UnseeableMobRenderer::new);
 
         LevelRenderEvents.END_MAIN.register(context -> {
             getPrevBuffer().copyColorFrom(((LevelRendererAccessor) context.levelRenderer()).getTargets().main.get());
