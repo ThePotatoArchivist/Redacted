@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "max": 3,
+              "min": 0
+            }
+          },
+          "name": "redacted:unseeable_shard"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Censored
+# Redacted
 
 ## Setup
 

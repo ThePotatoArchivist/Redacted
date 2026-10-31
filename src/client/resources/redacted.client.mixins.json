@@ -1,0 +1,22 @@
+{
+	"required": true,
+	"package": "archives.tater.redacted.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"LevelRendererAccessor",
+		"LevelRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	},
+	"mixins": [
+		"EntityRendererMixin",
+		"GameRendererMixin",
+		"LevelExtractorMixin",
+		"LivingEntityRendererMixin",
+		"RenderSystemMixin"
+	]
+}

@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "censored",
+	"id": "redacted",
 	"version": "${version}",
-	"name": "Censored",
+	"name": "Redacted",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"Me!"
@@ -12,23 +12,23 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/censored/icon.png",
+	"icon": "assets/redacted/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"archives.tater.censored.Censored"
+			"archives.tater.redacted.Redacted"
 		],
 		"client": [
-			"archives.tater.censored.client.CensoredClient"
+			"archives.tater.redacted.client.RedactedClient"
 		],
 		"fabric-datagen": [
-			"archives.tater.censored.client.CensoredDataGenerator"
+			"archives.tater.redacted.client.RedactedDataGenerator"
 		]
 	},
 	"mixins": [
-		"censored.mixins.json",
+		"redacted.mixins.json",
 		{
-			"config": "censored.client.mixins.json",
+			"config": "redacted.client.mixins.json",
 			"environment": "client"
 		}
 	],
