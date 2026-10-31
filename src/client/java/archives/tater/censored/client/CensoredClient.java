@@ -3,6 +3,7 @@ package archives.tater.censored.client;
 import archives.tater.censored.Censored;
 import archives.tater.censored.client.mixin.LevelRendererAccessor;
 import archives.tater.censored.client.render.UnseeableBlockRenderer;
+import archives.tater.censored.client.render.UnseeableCubeRenderer;
 import archives.tater.censored.client.render.UnseeableMobRenderer;
 import archives.tater.censored.registry.CensoredModBlockEntities;
 import archives.tater.censored.registry.CensoredModBlocks;
@@ -29,6 +30,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.special.SpecialModelRenderers;
 import net.minecraft.world.level.block.state.BlockState;
 
 import org.jetbrains.annotations.Nullable;
@@ -84,6 +86,7 @@ public class CensoredClient implements ClientModInitializer {
         BlockEntityRenderers.register(CensoredModBlockEntities.UNSEEABLE_BLOCK, _ -> new UnseeableBlockRenderer());
         ModelLayerRegistry.registerModelLayer(UNSEEABLE_MOB_LAYER, () -> LayerDefinition.create(HumanoidModel.createMesh(CubeDeformation.NONE, 0f), 64, 64));
         EntityRenderers.register(CensoredModEntities.UNSEEABLE, UnseeableMobRenderer::new);
+        SpecialModelRenderers.ID_MAPPER.put(Censored.id("unseeable_cube"), UnseeableCubeRenderer.Unbaked.CODEC);
 
         LevelRenderEvents.END_MAIN.register(context -> {
             getPrevBuffer().copyColorFrom(((LevelRendererAccessor) context.levelRenderer()).getTargets().main.get());

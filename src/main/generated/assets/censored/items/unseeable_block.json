@@ -1,6 +1,21 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "censored:block/unseeable_block"
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:empty"
+        },
+        "when": "gui"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:special",
+      "base": "minecraft:block/block",
+      "model": {
+        "type": "censored:unseeable_cube"
+      }
+    },
+    "property": "minecraft:display_context"
   }
 }

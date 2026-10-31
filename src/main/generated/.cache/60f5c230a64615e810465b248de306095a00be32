@@ -1,6 +1,5 @@
 // 26.3	-999999999-01-01T00:00:00	Censored/Model Definitions
 e25ea05b23cfc7304221df10745bbc9bfc1f85ab assets/censored/blockstates/unseeable_block.json
-cde20867e2c18e75a8787fc1dcd708d75929f43d assets/censored/items/unseeable_block.json
-1f0ca23c9aa7cc8b387dde9979b547a6a4417cb4 assets/censored/items/unseeable_shard.json
+ee878a7020764f05a584a8e8790ae5deaeaa5b24 assets/censored/items/unseeable_block.json
+73ded19c49495c3b1bf90ed35ac4b19d187c59a0 assets/censored/items/unseeable_shard.json
 079dc2016b9ccf60a480537d013d10a89060848d assets/censored/models/block/unseeable_block.json
-d8857bb73e3c9e1a6ce4a6cbe4e91eedaba69dfe assets/censored/models/item/unseeable_shard.json
