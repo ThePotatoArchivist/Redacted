@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "censored:unseeable"
+          "name": "censored:unseeable_block"
         }
       ],
       "rolls": 1

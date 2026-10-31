@@ -1,7 +1,7 @@
 package archives.tater.censored.client.mixin;
 
-import archives.tater.censored.Censored;
 import archives.tater.censored.client.CensoredClient;
+import archives.tater.censored.registry.CensoredModAttachments;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,6 +32,6 @@ public class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingE
             at = @At("TAIL")
     )
     private void setUnseeable(T entity, S state, float partialTicks, CallbackInfo ci) {
-        state.setData(CensoredClient.UNSEEABLE, entity.hasAttached(Censored.UNSEEABLE_ATTACHMENT));
+        state.setData(CensoredClient.UNSEEABLE, entity.hasAttached(CensoredModAttachments.UNSEEABLE));
     }
 }

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "censored:block/unseeable"
+    "model": "censored:block/unseeable_block"
   }
 }

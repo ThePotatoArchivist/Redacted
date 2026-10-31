@@ -4,6 +4,9 @@ import archives.tater.censored.Censored;
 import archives.tater.censored.client.mixin.LevelRendererAccessor;
 import archives.tater.censored.client.render.UnseeableBlockRenderer;
 import archives.tater.censored.client.render.UnseeableMobRenderer;
+import archives.tater.censored.registry.CensoredModBlockEntities;
+import archives.tater.censored.registry.CensoredModBlocks;
+import archives.tater.censored.registry.CensoredModEntities;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
@@ -72,15 +75,15 @@ public class CensoredClient implements ClientModInitializer {
     }
 
     public static boolean isHiddenOutline(BlockState instance) {
-        return instance.is(Censored.UNSEEABLE_BLOCK);
+        return instance.is(CensoredModBlocks.UNSEEABLE_BLOCK);
     }
 
     @Override
 	public void onInitializeClient() {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
-        BlockEntityRenderers.register(Censored.UNSEEABLE_BLOCK_ENTITY, _ -> new UnseeableBlockRenderer());
+        BlockEntityRenderers.register(CensoredModBlockEntities.UNSEEABLE_BLOCK, _ -> new UnseeableBlockRenderer());
         ModelLayerRegistry.registerModelLayer(UNSEEABLE_MOB_LAYER, () -> LayerDefinition.create(HumanoidModel.createMesh(CubeDeformation.NONE, 0f), 64, 64));
-        EntityRenderers.register(Censored.UNSEEABLE_ENTITY.value(), UnseeableMobRenderer::new);
+        EntityRenderers.register(CensoredModEntities.UNSEEABLE, UnseeableMobRenderer::new);
 
         LevelRenderEvents.END_MAIN.register(context -> {
             getPrevBuffer().copyColorFrom(((LevelRendererAccessor) context.levelRenderer()).getTargets().main.get());

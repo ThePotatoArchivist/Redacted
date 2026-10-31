@@ -1,6 +1,6 @@
 package archives.tater.censored.client.datagen;
 
-import archives.tater.censored.Censored;
+import archives.tater.censored.registry.CensoredModBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
@@ -16,6 +16,6 @@ public class ModBlockLootProvider extends FabricBlockLootSubProvider {
 
     @Override
     public void generate() {
-        dropSelf(Censored.UNSEEABLE_BLOCK.value());
+        dropSelf(CensoredModBlocks.UNSEEABLE_BLOCK);
     }
 }
